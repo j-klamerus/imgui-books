@@ -1,0 +1,32 @@
+# Build output
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# macOS app bundles / binaries
+*.app/
+*.dSYM/
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Generated runtime data
+save_data/*.json
+save_data/*.db
+save_data/*.log
+
+# Logs
+*.log
