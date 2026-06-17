@@ -21,11 +21,13 @@ set(IMGUI_SOURCES
 set(SRC_SOURCES
     src/main.cpp
     src/history.cpp
+    src/interface.cpp
 )
 
 add_executable(MyImGuiApp
     src/main.cpp
     src/history.cpp
+    src/interface.cpp
     ${IMGUI_SOURCES}
 )
 
