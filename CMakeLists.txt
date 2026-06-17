@@ -17,12 +17,20 @@ set(IMGUI_SOURCES
     external/imgui/backends/imgui_impl_opengl3.cpp
 )
 
+#project source files
+set(SRC_SOURCES
+    src/main.cpp
+    src/history.cpp
+)
+
 add_executable(MyImGuiApp
     src/main.cpp
+    src/history.cpp
     ${IMGUI_SOURCES}
 )
 
 target_include_directories(MyImGuiApp PRIVATE
+    include
     external/imgui
     external/imgui/backends
     external/json/include

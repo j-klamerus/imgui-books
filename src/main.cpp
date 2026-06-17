@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <fstream>
 #include "nlohmann/json.hpp"
+#include "history.h"
 
 using json = nlohmann::json;
 bool showBookData = false;
@@ -105,7 +106,7 @@ int main(int, char**)
 
         ImGui::Text("Books");
         ImGui::Separator();
-
+        NoteHistory::DisplayHistory();
 
         if (ImGui::Button("Click Me"))
         {

@@ -1,0 +1,5 @@
+
+
+namespace NoteHistory {
+    void DisplayHistory();
+}
