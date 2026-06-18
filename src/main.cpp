@@ -11,6 +11,9 @@
 
 using json = nlohmann::json;
 bool showBookData = false;
+bool addBookPageShowing = false;
+bool settingsPageShowing = false;
+bool viewReadingLogShowing = false;
 
 struct BookData {
     std::string title;
