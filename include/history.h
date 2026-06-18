@@ -2,4 +2,5 @@
 
 namespace NoteHistory {
     void DisplayHistory();
+    int randomNumber();
 }

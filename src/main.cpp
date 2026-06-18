@@ -121,7 +121,7 @@ int main(int, char**)
             ImGui::Text("%s", bookData.date.c_str());
             ImGui::Text("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
         }
-
+        ImGui::ShowStyleEditor();
         ImGui::End();
 
         // Rendering
