@@ -7,7 +7,6 @@ namespace NoteHistory {
         int boxID = 0;
         bool checkboxBool = false;
 
-        ImGui::Text("This is the history UI");
             if(ImGui::BeginTable("split", 73)) {
                 for(int i = 0; i < NUMBER_OF_COLUMNS; i++) {
 

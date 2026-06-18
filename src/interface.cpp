@@ -3,15 +3,21 @@
 #include "imgui.h"
 
 namespace AppInterface {
+    float buttonWidth = 100.0f;
+    float buttonHeight = 20.0f;
     void DisplayNav() {
-        ImGui::Text("App Name");
-        if(ImGui::Button("View History")) {
+        //this line needs to be declared here because it needs active imgui context to access available region
+        float availableWidth = ImGui::GetContentRegionAvail().x;
+        ImGui::SetCursorPosX((availableWidth - (buttonWidth * 3)) * 0.5f);
+        if(ImGui::Button("View History", {buttonWidth, buttonHeight})) {
             std::cout << "view history clicked" << std::endl;
         }
-        if(ImGui::Button("Add New Read")) {
+        ImGui::SameLine();
+        if(ImGui::Button("Add New Read", {buttonWidth, buttonHeight})) {
             std::cout << "add new read clicked" << std::endl;
         }
-        if(ImGui::Button("Settings")) {
+        ImGui::SameLine();
+        if(ImGui::Button("Settings", {buttonWidth, buttonHeight})) {
             std::cout << "settings clicked" << std::endl;
         }
     }

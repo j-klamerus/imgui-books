@@ -105,10 +105,10 @@ int main(int, char**)
             ImGuiWindowFlags_NoNavFocus |
             ImGuiWindowFlags_NoBackground);
 
-        ImGui::Text("Books");
+        ImGui::Text("ImGui Book App");
         ImGui::Separator();
-        NoteHistory::DisplayHistory();
         AppInterface::DisplayNav();
+        NoteHistory::DisplayHistory();
 
         if (ImGui::Button("Click Me"))
         {
