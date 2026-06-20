@@ -59,7 +59,7 @@ int main(int, char**)
     if (!glfwInit())
         return 1;
 
-    // macOS OpenGL setup
+    //OpenGL setup
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -79,7 +79,6 @@ int main(int, char**)
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_None;      // Important
 
-    // Style (optional - makes it look nicer)
     ImGui::StyleColorsDark();
 
     // Setup Platform/Renderer backends
