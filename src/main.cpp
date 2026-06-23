@@ -8,12 +8,9 @@
 #include "nlohmann/json.hpp"
 #include "history.h"
 #include "interface.h"
+#include "app_state.h"
 
 using json = nlohmann::json;
-bool showBookData = false;
-bool addBookPageShowing = false;
-bool settingsPageShowing = false;
-bool viewReadingLogShowing = false;
 
 struct BookData {
     std::string title;
@@ -24,6 +21,8 @@ struct BookData {
 };
 
 BookData bookData;
+
+AppState state;
 
 void fetchUserData() {
     std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
@@ -44,7 +43,6 @@ void fetchUserData() {
         printf("%s\n", bookData.note.c_str());
         printf("%s\n", bookData.date.c_str());
         printf("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
-        showBookData = true;
     }   catch(const std::exception& e) {
         printf("json parse error: %s\n", e.what());
     }
@@ -109,7 +107,7 @@ int main(int, char**)
 
         ImGui::Text("ImGui Book App");
         ImGui::Separator();
-        AppInterface::DisplayNav();
+        AppInterface::DisplayNav(state);
         NoteHistory::DisplayHistory();
 
         if (ImGui::Button("Click Me"))
@@ -117,13 +115,7 @@ int main(int, char**)
             fetchUserData();
         }
 
-        if(showBookData) {
-            ImGui::Text("%s", bookData.title.c_str());
-            ImGui::Text("%s", bookData.note.c_str());
-            ImGui::Text("%s", bookData.date.c_str());
-            ImGui::Text("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
-        }
-        ImGui::ShowStyleEditor();
+        //ImGui::ShowStyleEditor();
         ImGui::End();
 
         // Rendering

@@ -2,16 +2,14 @@
 #include "interface.h"
 #include "imgui.h"
 #include "addBook.h"
+#include "app_state.h"
 
 namespace AppInterface {
     float buttonWidth = 100.0f;
     float buttonHeight = 20.0f;
 
-    bool addBookPageShowing;
-    bool settingsPageShowing = false;
-    bool viewReadingLogShowing = false;
 
-    void DisplayNav() {
+    void DisplayNav(AppState& state) {
         //this line needs to be declared here because it needs active imgui context to access available region
         float availableWidth = ImGui::GetContentRegionAvail().x;
         ImGui::SetCursorPosX((availableWidth - (buttonWidth * 3)) * 0.5f);
@@ -20,7 +18,7 @@ namespace AppInterface {
         }
         ImGui::SameLine();
         if(ImGui::Button("Add New Read", {buttonWidth, buttonHeight})) {
-            addBookPageShowing = true;
+            //addBookPageShowing = true;
             std::cout << "add new read clicked" << std::endl;
         }
         ImGui::SameLine();
