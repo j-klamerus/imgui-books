@@ -19,7 +19,7 @@ namespace NoteHistory {
         {47.0f / 255.0f, 255.0f, 0.0f, 0.8f},
         {47.0f / 255.0f, 255.0f, 0.0f, 1.0f}
     };
-
+    
     void DisplayHistory() {
         //int colorIndex = randomNumber();
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(52.0f / 255.0f, 152.0f / 255.0f, 219.0f / 255.0f, 1.0f));
@@ -32,6 +32,7 @@ namespace NoteHistory {
                             if(ImGui::Button("", {20, 20})) {
                                 std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
                                 printf("clicked it!");
+                                std::cout << sizeof(shades) << std::endl;
                             }
                         ImGui::PopID();
                         //boxID++;
