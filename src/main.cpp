@@ -110,6 +110,27 @@ int main(int, char**)
         AppInterface::DisplayNav(state);
         NoteHistory::DisplayHistory();
 
+        if(state.viewReadingLogShowing) {
+            ImGui::Text("Reading log showing");
+            if(ImGui::Button("exit")) {
+                state.viewReadingLogShowing = false;
+            }
+        }
+
+        if(state.addBookPageShowing) {
+            ImGui::Text("add book here!");
+            if(ImGui::Button("exit")) {
+                state.addBookPageShowing = false;
+            }
+        }
+
+        if(state.settingsPageShowing) {
+            ImGui::Text("settings");
+            if(ImGui::Button("exit")) {
+                state.settingsPageShowing = false;
+            }
+        }
+
         if (ImGui::Button("Click Me"))
         {
             fetchUserData();
