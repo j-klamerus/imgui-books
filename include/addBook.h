@@ -1,4 +1,4 @@
 
 namespace AddBook {
-    void DisplayAddPage(bool addBookPageShowing);
+    void DisplayAddPage();
 }

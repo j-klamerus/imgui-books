@@ -12,11 +12,8 @@ namespace Log {
 
     void DisplayReadingLog() {
         ImGui::Text("Reading Log!!!!");
-        if(ImGui::Button("Fetch reading log.")) {
-            fetchUserData();
-            dataFetched = true;
-        }
-
+        fetchUserData();
+        dataFetched = true;
         if(dataFetched) {
             ImGui::Text("%s", bookData.title.c_str());
             ImGui::Text("%s", bookData.note.c_str());

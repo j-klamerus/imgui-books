@@ -10,6 +10,7 @@
 #include "app_state.h"
 #include "log.h"
 #include "book_data.h"
+#include "addBook.h"
 
 BookData bookData;
 
@@ -87,7 +88,7 @@ int main(int, char**)
         }
 
         if(state.addBookPageShowing) {
-            ImGui::Text("add book here!");
+            AddBook::DisplayAddPage();
             if(ImGui::Button("exit")) {
                 state.addBookPageShowing = false;
             }
