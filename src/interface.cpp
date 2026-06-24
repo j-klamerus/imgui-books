@@ -13,8 +13,8 @@ namespace AppInterface {
         //this line needs to be declared here because it needs active imgui context to access available region
         float availableWidth = ImGui::GetContentRegionAvail().x;
         ImGui::SetCursorPosX((availableWidth - (buttonWidth * 3)) * 0.5f);
-        if(ImGui::Button("View History", {buttonWidth, buttonHeight})) {
-            std::cout << "view history clicked" << std::endl;
+        if(ImGui::Button("View Log", {buttonWidth, buttonHeight})) {
+            std::cout << "view Log clicked" << std::endl;
             state.viewReadingLogShowing = true;
         }
         ImGui::SameLine();

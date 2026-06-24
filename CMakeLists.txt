@@ -29,6 +29,7 @@ add_executable(MyImGuiApp
     src/history.cpp
     src/interface.cpp
     src/addBook.cpp
+    src/log.cpp
     external/imgui/imgui_demo.cpp
     ${IMGUI_SOURCES}
 )

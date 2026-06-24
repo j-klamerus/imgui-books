@@ -9,6 +9,7 @@
 #include "history.h"
 #include "interface.h"
 #include "app_state.h"
+#include "log.h"
 
 using json = nlohmann::json;
 
@@ -111,7 +112,7 @@ int main(int, char**)
         NoteHistory::DisplayHistory();
 
         if(state.viewReadingLogShowing) {
-            ImGui::Text("Reading log showing");
+            Log::DisplayReadingLog();
             if(ImGui::Button("exit")) {
                 state.viewReadingLogShowing = false;
             }
