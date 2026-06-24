@@ -2,5 +2,6 @@
 
 namespace Log {
     void DisplayReadingLog();
+    void fetchUserData();
 }
 
