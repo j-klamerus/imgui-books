@@ -24,14 +24,10 @@ namespace AddBook {
             bookData.note = readDescriptionLabel;
         }
 
-        static char firstPageLabel [14] = "Page Started";
-
-        ImGui::InputInt(firstPageLabel, &firstPage);
+        ImGui::InputInt("Page Started", &firstPage);
         bookData.pageStart = firstPage;
 
-        static char endPageLabel [14] = "Page Ended";
-    
-        ImGui::InputInt(endPageLabel, &endPage);
+        ImGui::InputInt("Page Ended", &endPage);
         bookData.pageEnd = endPage;
 
         if(ImGui::Button("print page start and end")) {
