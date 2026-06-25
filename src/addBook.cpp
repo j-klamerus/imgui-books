@@ -4,6 +4,7 @@
 #include "book_data.h"
 #include "nlohmann/json.hpp"
 #include <fstream>
+#include <ctime>
 
 using json = nlohmann::json;
 
@@ -37,6 +38,11 @@ namespace AddBook {
         if(ImGui::Button("Write to json file")) {
             //std::cout << bookData.pageStart << std::endl;
             //std::cout << bookData.pageEnd << std::endl;
+            //get time
+            time_t timestamp;
+            time(&timestamp);
+            bookData.date = ctime(&timestamp);
+            
             UploadBookData(bookData);
         }
 
@@ -45,13 +51,27 @@ namespace AddBook {
     int UploadBookData(BookData data) {
             json userData;
 
-            std::ofstream file("user_data.json");
-
-            if (file.is_open()) {
-                file << userData.dump(4); // Pretty-print with 4-space indentation
-                file.close();
+            //load json file
+            std::ifstream in("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
+            if(in.is_open()) {
+                in >> userData;
+                std::cout << "opened file" << std::endl;
             }
 
+            // enter user read data
+            userData["reads"].push_back({
+                {"id", 3},
+                {"title", data.title},
+                {"note", data.note},
+                {"page_start", data.pageStart},
+                {"page_end", data.pageEnd},
+                {"date", data.date}
+            });
+
+            //save json file
+            std::ofstream out("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
+            out << userData.dump(4);
+            
             return 0;
         }
 }

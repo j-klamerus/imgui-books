@@ -12,8 +12,8 @@ namespace Log {
 
     void DisplayReadingLog() {
         ImGui::Text("Reading Log!!!!");
-        fetchUserData();
-        dataFetched = true;
+        //fetchUserData();
+        //dataFetched = true;
         if(dataFetched) {
             ImGui::Text("%s", bookData.title.c_str());
             ImGui::Text("%s", bookData.note.c_str());
@@ -22,7 +22,7 @@ namespace Log {
         }
     }
 
-    void fetchUserData() {
+    /*void fetchUserData() {
     std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
 
     if (!file.is_open()) {
@@ -44,5 +44,5 @@ namespace Log {
     }   catch(const std::exception& e) {
         printf("json parse error: %s\n", e.what());
     }
-    }
+    }*/
 }
