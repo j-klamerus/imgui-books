@@ -2,6 +2,10 @@
 #include "imgui.h"
 #include <iostream>
 #include "book_data.h"
+#include "nlohmann/json.hpp"
+#include <fstream>
+
+using json = nlohmann::json;
 
 namespace AddBook {
 
@@ -16,7 +20,7 @@ namespace AddBook {
         static char bookTitleLabel[255] = "Book Title";
         if(ImGui::InputText("##edit", bookTitleLabel, IM_COUNTOF(bookTitleLabel))) {
             bookData.title = bookTitleLabel;
-            std::cout << bookData.title << std::endl;
+            //std::cout << bookData.title << std::endl;
         }
 
         static char readDescriptionLabel[255] = "description";
@@ -24,15 +28,30 @@ namespace AddBook {
             bookData.note = readDescriptionLabel;
         }
 
-        ImGui::InputInt("Page Started", &firstPage);
+        ImGui::InputInt("##01Page Started", &firstPage);
         bookData.pageStart = firstPage;
 
-        ImGui::InputInt("Page Ended", &endPage);
+        ImGui::InputInt("##02Page Ended", &endPage);
         bookData.pageEnd = endPage;
 
-        if(ImGui::Button("print page start and end")) {
-            std::cout << bookData.pageStart << std::endl;
-            std::cout << bookData.pageEnd << std::endl;
+        if(ImGui::Button("Write to json file")) {
+            //std::cout << bookData.pageStart << std::endl;
+            //std::cout << bookData.pageEnd << std::endl;
+            UploadBookData(bookData);
         }
+
     };
+
+    int UploadBookData(BookData data) {
+            json userData;
+
+            std::ofstream file("user_data.json");
+
+            if (file.is_open()) {
+                file << userData.dump(4); // Pretty-print with 4-space indentation
+                file.close();
+            }
+
+            return 0;
+        }
 }
