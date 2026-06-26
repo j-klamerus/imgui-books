@@ -42,7 +42,7 @@ namespace AddBook {
             time_t timestamp;
             time(&timestamp);
             bookData.date = ctime(&timestamp);
-            
+
             UploadBookData(bookData);
         }
 
@@ -60,7 +60,7 @@ namespace AddBook {
 
             // enter user read data
             userData["reads"].push_back({
-                {"id", 3},
+                {"id", checkMostRecentID(userData)},
                 {"title", data.title},
                 {"note", data.note},
                 {"page_start", data.pageStart},
@@ -71,7 +71,12 @@ namespace AddBook {
             //save json file
             std::ofstream out("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
             out << userData.dump(4);
-            
+            //checkMostRecentID(userData);
             return 0;
         }
+
+    int checkMostRecentID(json userData) {
+        //std::cout << userData["reads"].size() << std::endl;
+        return userData["reads"].size() + 1;
+    }
 }
