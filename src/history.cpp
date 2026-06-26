@@ -32,7 +32,6 @@ namespace NoteHistory {
                             if(ImGui::Button("", {20, 20})) {
                                 std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
                                 printf("clicked it!");
-                                std::cout << sizeof(shades) << std::endl;
                             }
                         ImGui::PopID();
                         //boxID++;

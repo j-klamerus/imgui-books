@@ -80,8 +80,8 @@ int main(int, char**)
         AppInterface::DisplayNav(state);
         NoteHistory::DisplayHistory();
 
-        if(state.viewReadingLogShowing) {
-            Log::DisplayReadingLog();
+        if(state.viewReadingLogShowing && !state.initializedReadingLog) {
+            Log::DisplayReadingLog(state);
             if(ImGui::Button("exit")) {
                 state.viewReadingLogShowing = false;
             }

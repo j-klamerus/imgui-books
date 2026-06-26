@@ -4,4 +4,5 @@ struct AppState {
     bool addBookPageShowing = false;
     bool settingsPageShowing = false;
     bool viewReadingLogShowing = false;
+    bool initializedReadingLog = false;
 };
