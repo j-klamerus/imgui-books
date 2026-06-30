@@ -32,7 +32,7 @@ namespace Log {
 
     void fetchUserData() {
         //dataFetched = true;
-        /*std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
+        std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
 
         if (!file.is_open()) {
         printf("failed to open json file\n");
@@ -41,18 +41,19 @@ namespace Log {
 
         try{
             json j = json::parse(file);
-            bookData.title = j["title"];
+            /*bookData.title = j["title"];
             bookData.date = j["date"];
             bookData.note = j["note"];
             bookData.pageStart = j["page_start"];
-            bookData.pageEnd = j["page_end"];
+            bookData.pageEnd = j["page_end"];*/
+            bookData.title = j["reads"][0]["title"];
             printf("%s\n", bookData.title.c_str());
-            printf("%s\n", bookData.note.c_str());
-            printf("%s\n", bookData.date.c_str());
-            printf("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
+            //printf("%s\n", bookData.note.c_str());
+            //printf("%s\n", bookData.date.c_str());
+            //printf("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
         }   catch(const std::exception& e) {
             printf("json parse error: %s\n", e.what());
-        }*/
+        }
     }
 
     void DisplayIndividualRead() {
