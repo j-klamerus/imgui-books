@@ -78,7 +78,8 @@ int main(int, char**)
         ImGui::Text("ImGui Book App");
         ImGui::Separator();
         AppInterface::DisplayNav(state);
-        NoteHistory::DisplayHistory();
+        // commented out for now until it actually does something.
+        //NoteHistory::DisplayHistory();
 
         if(state.viewReadingLogShowing) {
             Log::DisplayReadingLog(state);
