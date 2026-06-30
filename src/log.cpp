@@ -26,6 +26,7 @@ namespace Log {
                 ImGui::Text("%s", read.note.c_str());
                 ImGui::Text("%s", read.date.c_str());
                 ImGui::Text("Read %d pages.", read.pageEnd - read.pageStart);
+                ImGui::Button("Delete Read");
                 ImGui::Separator();
             }
            ImGui::Text("data fetched is true");

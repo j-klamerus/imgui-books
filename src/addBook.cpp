@@ -29,15 +29,25 @@ namespace AddBook {
             bookData.note = readDescriptionLabel;
         }
 
+        ImGui::Text("Page Started:");
         ImGui::InputInt("##01Page Started", &firstPage);
         bookData.pageStart = firstPage;
 
+        ImGui::Text("Page Ended:");
         ImGui::InputInt("##02Page Ended", &endPage);
         bookData.pageEnd = endPage;
 
         if(ImGui::Button("Write to json file")) {
             //std::cout << bookData.pageStart << std::endl;
             //std::cout << bookData.pageEnd << std::endl;
+            if(bookData.title == "" || bookData.note == "" || bookData.title == "Book Title" || bookData.note == "description") {
+                std::cout << "Enter valid book title and note." << std::endl;
+                return;
+            }
+            if(bookData.pageStart == 0 || bookData.pageEnd == 0 || bookData.pageStart > bookData.pageEnd) {
+                std::cout << "Enter valid page start and page end." << std::endl;
+                return;
+            }
             //get time
             time_t timestamp;
             time(&timestamp);

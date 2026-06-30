@@ -75,7 +75,7 @@ int main(int, char**)
             ImGuiWindowFlags_NoNavFocus |
             ImGuiWindowFlags_NoBackground);
 
-        ImGui::Text("ImGui Book App");
+        ImGui::Text("ImGui Books");
         ImGui::Separator();
         AppInterface::DisplayNav(state);
         // commented out for now until it actually does something.
