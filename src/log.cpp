@@ -44,6 +44,7 @@ namespace Log {
     }
 
     void fetchUserData() {
+        readingLog.clear();
         //dataFetched = true;
         std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
         
@@ -109,9 +110,16 @@ namespace Log {
 
             for(int i = 0; i < j["reads"].size(); i++) {
                 if(j["reads"][i]["id"] == readID) {
-
+                    j["reads"].erase(j["reads"].begin() + i);
+                    break;
                 }
             }
+
+            std::ofstream out("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
+            out << j.dump(4);
+
+            dataFetched = false;
+            fetchUserData();
 
         } catch(std::exception& e) {
             printf("json error: %s\n", e.what());
