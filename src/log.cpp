@@ -14,6 +14,7 @@ namespace Log {
     std::vector<BookData> readingLog = {};
 
     void DisplayReadingLog(AppState& state) {
+        state.initializedReadingLog = false;
         ImGui::Text("Reading Log!!!!");
         if(!state.initializedReadingLog) {
             fetchUserData();
