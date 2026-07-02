@@ -21,13 +21,23 @@ namespace Log {
         }
         //dataFetched = true;
         if(dataFetched) {
+            int i = 0;
             for(const auto& read : readingLog) {
+
                 ImGui::Text("%s", read.title.c_str());
                 ImGui::Text("%s", read.note.c_str());
                 ImGui::Text("%s", read.date.c_str());
                 ImGui::Text("Read %d pages.", read.pageEnd - read.pageStart);
-                ImGui::Button("Delete Read");
+
+                ImGui::PushID(i);
+                    if(ImGui::Button("Delete Read")) {
+                        std::cout << "clicked " << read.logID << " button." << std::endl;
+                        DeleteIndividualRead(read.logID);
+                    }
+                ImGui::PopID();
+
                 ImGui::Separator();
+                i++;
             }
            ImGui::Text("data fetched is true");
         }
@@ -85,4 +95,28 @@ namespace Log {
         std::string date;
         int logID;
     */
+   void DeleteIndividualRead(int readID) {
+
+        std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
+        
+        if (!file.is_open()) {
+        printf("failed to open json file\n");
+        return;
+        }
+        
+        try {
+            json j = json::parse(file);
+
+            for(int i = 0; i < j["reads"].size(); i++) {
+                if(j["reads"][i]["id"] == readID) {
+
+                }
+            }
+
+        } catch(std::exception& e) {
+            printf("json error: %s\n", e.what());
+        }
+
+        return;
+   }
 }

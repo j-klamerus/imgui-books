@@ -8,5 +8,6 @@ namespace Log {
     void DisplayReadingLog(AppState& state);
     void fetchUserData();
     void DisplayIndividualRead();
+    void DeleteIndividualRead(int readID);
 }
 
