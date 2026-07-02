@@ -48,7 +48,7 @@ namespace AddBook {
                 std::cout << "Enter valid page start and page end." << std::endl;
                 return;
             }
-            //get time
+            //get time in "Thu Jul  2 15:49:42 2026" format.   
             time_t timestamp;
             time(&timestamp);
             bookData.date = ctime(&timestamp);

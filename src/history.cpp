@@ -6,10 +6,12 @@
 
 namespace NoteHistory {
 
-    const int NUMBER_OF_COLUMNS = 73;
-    const int NUMBER_OF_ROWS = 5;
+    const int NUMBER_OF_COLUMNS = 52;
+    const int NUMBER_OF_ROWS = 7;
     int boxID = 0;
     bool checkboxBool = false;
+
+    float buttonSize = 20.0f;
 
     //declare history button color shades
     std::vector<std::vector<float>> shades = {
@@ -22,23 +24,33 @@ namespace NoteHistory {
     
     void DisplayHistory() {
         //int colorIndex = randomNumber();
+        /* doesnt work
+        float tableWidth = NUMBER_OF_COLUMNS * buttonSize * ImGui::GetStyle().ItemSpacing.x;
+        float availableWidth = ImGui::GetContentRegionAvail().x;
+        ImGui::SetCursorPosX((availableWidth - tableWidth));
+        */
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(52.0f / 255.0f, 152.0f / 255.0f, 219.0f / 255.0f, 1.0f));
         ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(52.0f / 255.0f, 152.0f / 255.0f, 219.0f / 255.0f, 1.0f));
-            if(ImGui::BeginTable("split", 73)) {
+            if(ImGui::BeginTable("split", NUMBER_OF_COLUMNS + 1)) {
                 for(int i = 0; i < NUMBER_OF_COLUMNS; i++) {
                     ImGui::TableNextColumn();
                     for(int j = 0; j < NUMBER_OF_ROWS; j++) {
                         ImGui::PushID(i * NUMBER_OF_ROWS + j);
                             if(ImGui::Button("", {20, 20})) {
                                 std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
-                                printf("clicked it!");
-                            }
+                        }
                         ImGui::PopID();
                         //boxID++;
                     }
                 }
-                ImGui::PopStyleColor(2); 
-                ImGui::EndTable();
+            ImGui::TableNextColumn();
+            ImGui::PushID(364);
+            if(ImGui::Button("", {buttonSize, buttonSize})) {
+                        std::cout << "clicked " << 364 << " button" << std::endl;
+            }
+            ImGui::PopID();
+        ImGui::PopStyleColor(2); 
+        ImGui::EndTable();
         }
     }
 
