@@ -111,6 +111,7 @@ namespace Log {
             for(int i = 0; i < j["reads"].size(); i++) {
                 if(j["reads"][i]["id"] == readID) {
                     j["reads"].erase(j["reads"].begin() + i);
+                    std::cout << "found the read to delete" << std::endl;
                     break;
                 }
             }
@@ -119,12 +120,12 @@ namespace Log {
             out << j.dump(4);
 
             dataFetched = false;
-            fetchUserData();
 
         } catch(std::exception& e) {
             printf("json error: %s\n", e.what());
         }
-
+        //needs to be called here instead of in the try/catch because the file needs to write fully and close before it can be indexed again.
+        fetchUserData();
         return;
    }
 }
