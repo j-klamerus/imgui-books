@@ -54,6 +54,34 @@ namespace AddBook {
             time(&timestamp);
             bookData.date = ctime(&timestamp);
 
+            //get day if year number
+            std::time_t now = std::time(nullptr);
+                
+            // Convert to local time structure
+            std::tm* local_time = std::localtime(&now);
+                
+            // tm_yday holds 0 for Jan 1st, so add 1
+            int day_of_year = local_time->tm_yday + 1;
+            bookData.dayOfYear = day_of_year;
+            /*
+            #include <iostream>
+            #include <ctime>
+
+            int main() {
+                // Fetch the current system time
+                std::time_t now = std::time(nullptr);
+                
+                // Convert to local time structure
+                std::tm* local_time = std::localtime(&now);
+                
+                // tm_yday holds 0 for Jan 1st, so add 1
+                int day_of_year = local_time->tm_yday + 1;
+                
+                std::cout << "Today is day " << day_of_year << " of the year.\n";
+                return 0;
+            }
+            */
+
             UploadBookData(bookData);
         }
 
@@ -76,7 +104,8 @@ namespace AddBook {
                 {"note", data.note},
                 {"page_start", data.pageStart},
                 {"page_end", data.pageEnd},
-                {"date", data.date}
+                {"date", data.date},
+                {"dayNumberOfRead", data.dayOfYear}
             });
 
             //save json file

@@ -7,5 +7,6 @@ struct BookData {
     int pageStart;
     int pageEnd;
     std::string date;
+    int dayOfYear;
     int logID;
 };

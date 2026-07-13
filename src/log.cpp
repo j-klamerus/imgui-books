@@ -67,6 +67,7 @@ namespace Log {
                     j["reads"][i]["page_start"],
                     j["reads"][i]["page_end"],
                     j["reads"][i]["date"],
+                    j["reads"][i]["dayNumberOfRead"],
                     j["reads"][i]["id"]
                 });
                 //bookData.title = j["reads"][i]["title"];
@@ -98,7 +99,7 @@ namespace Log {
         int logID;
     */
    void DeleteIndividualRead(int readID) {
-
+        std::cout << "ran function" << std::endl;
         std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
         
         if (!file.is_open()) {
