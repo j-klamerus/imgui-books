@@ -79,7 +79,7 @@ int main(int, char**)
         ImGui::Separator();
         AppInterface::DisplayNav(state);
         // commented out for now until it actually does something.
-        NoteHistory::DisplayHistory();
+        NoteHistory::DisplayHistory(state);
 
         if(state.viewReadingLogShowing) {
             Log::DisplayReadingLog(state);

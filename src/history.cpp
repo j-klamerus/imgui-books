@@ -6,6 +6,7 @@
 #include <random>
 #include <iostream>
 #include "book_data.h"
+#include "app_state.h"
 
 namespace NoteHistory {
 
@@ -28,35 +29,39 @@ namespace NoteHistory {
         {47.0f / 255.0f, 255.0f, 0.0f, 1.0f}
     };
 
-    void DisplayHistory() {
+    void DisplayHistory(AppState &state) {
         //int colorIndex = randomNumber();
         /* doesnt work
         float tableWidth = NUMBER_OF_COLUMNS * buttonSize * ImGui::GetStyle().ItemSpacing.x;
         float availableWidth = ImGui::GetContentRegionAvail().x;
         ImGui::SetCursorPosX((availableWidth - tableWidth));
         */
-            if(ImGui::BeginTable("split", NUMBER_OF_COLUMNS + 1)) {
-                for(int i = 0; i < NUMBER_OF_COLUMNS; i++) {
-                    ImGui::TableNextColumn();
-                    for(int j = 0; j < NUMBER_OF_ROWS; j++) {
-                        ImGui::PushID(i * NUMBER_OF_ROWS + j);
-                        ImGui::PushStyleColor(ImGuiCol_Button, shades[0]);
-                        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[0]);
-                            if(ImGui::Button("", {20, 20})) {
-                                std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
+        if(state.initializedHistoryData) {
+                if(ImGui::BeginTable("split", NUMBER_OF_COLUMNS + 1)) {
+                    for(int i = 0; i < NUMBER_OF_COLUMNS; i++) {
+                        ImGui::TableNextColumn();
+                        for(int j = 0; j < NUMBER_OF_ROWS; j++) {
+                            ImGui::PushID(i * NUMBER_OF_ROWS + j);
+                            ImGui::PushStyleColor(ImGuiCol_Button, shades[0]);
+                            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[0]);
+                                if(ImGui::Button("", {20, 20})) {
+                                    std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
+                            }
+                            ImGui::PopStyleColor(2);
+                            ImGui::PopID();
+                            //boxID++;
                         }
-                        ImGui::PopStyleColor(2);
-                        ImGui::PopID();
-                        //boxID++;
                     }
+                ImGui::TableNextColumn();
+                ImGui::PushID(364);
+                if(ImGui::Button("", {buttonSize, buttonSize})) {
+                            std::cout << "clicked " << 364 << " button" << std::endl;
                 }
-            ImGui::TableNextColumn();
-            ImGui::PushID(364);
-            if(ImGui::Button("", {buttonSize, buttonSize})) {
-                        std::cout << "clicked " << 364 << " button" << std::endl;
+                ImGui::PopID();
+            ImGui::EndTable();
             }
-            ImGui::PopID();
-        ImGui::EndTable();
+        } else {
+            fetchUserData(state);
         }
     }
 
@@ -72,7 +77,7 @@ namespace NoteHistory {
         return random_number;
     }
 
-    void fetchUserData() {
+        void fetchUserData(AppState &state) {
         //readingLog.clear();
         //dataFetched = true;
         std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
@@ -106,6 +111,7 @@ namespace NoteHistory {
             //printf("%s\n", bookData.note.c_str());
             //printf("%s\n", bookData.date.c_str());
             //printf("Started on page: %d, Finished on page: %d\n", bookData.pageStart, bookData.pageEnd);
+            state.initializedHistoryData = true;
         }   catch(const std::exception& e) {
             printf("json parse error: %s\n", e.what());
         }

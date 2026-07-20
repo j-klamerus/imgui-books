@@ -5,4 +5,5 @@ struct AppState {
     bool settingsPageShowing = false;
     bool viewReadingLogShowing = false;
     bool initializedReadingLog = false;
+    bool initializedHistoryData = false;
 };
