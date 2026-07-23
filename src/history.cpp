@@ -42,6 +42,11 @@ namespace NoteHistory {
                         ImGui::TableNextColumn();
                         for(int j = 0; j < NUMBER_OF_ROWS; j++) {
                             ImGui::PushID(i * NUMBER_OF_ROWS + j);
+                            if(true /*there exists a read in the readinglog vector with this index + 1 as the # of year */) {
+                                // check for additional reads on this day and draw the color of the cell accordingly
+                            } else {
+                                // draw default empty cell if no read exists.
+                            }
                             ImGui::PushStyleColor(ImGuiCol_Button, shades[0]);
                             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[0]);
                                 if(ImGui::Button("", {20, 20})) {
