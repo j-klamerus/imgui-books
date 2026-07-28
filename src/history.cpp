@@ -48,8 +48,8 @@ namespace NoteHistory {
                                 ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[2]);
                                     if(ImGui::Button("", {20, 20})) {
                                         std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
-                                        logBookData(readingLog);
-                                }
+                                        //logBookData(readingLog);
+                                    }
                                 ImGui::PopStyleColor(2);
                                 ImGui::PopID();
                             } else {
@@ -131,6 +131,17 @@ namespace NoteHistory {
     }
 
     bool checkReadExists(int buttonNumber) {
+        //std::cout << buttonNumber << std::endl;
+        //std::cout << "day of year: " << readingLog[buttonNumber].dayOfYear << "\n" << std::endl;
+        std::cout << "button number: " << buttonNumber << "\n" << std::endl;
+        if(readingLog[buttonNumber].dayOfYear != 0 && readingLog[buttonNumber].dayOfYear == buttonNumber) {
+            //std::cout << "read here" << std::endl;
+            return true;
+        } else {
+            //std::cout << "no read here" << std::endl;
+            return false;
+        }
+        /*
         for(int i = 0; i < readingLog.size(); i++) {
             if(readingLog[i].dayOfYear == buttonNumber) {
                 return true;
@@ -138,6 +149,7 @@ namespace NoteHistory {
                 return false;
             }
         }
+        */
         return false;
     }
 
