@@ -44,18 +44,24 @@ namespace NoteHistory {
                             ImGui::PushID(i * NUMBER_OF_ROWS + j);
                             if(checkReadExists((i * NUMBER_OF_ROWS + j)) /*there exists a read in the readinglog vector with this index + 1 as the # of year */) {
                                 // check for additional reads on this day and draw the color of the cell accordingly
-                                std::cout << "read exists here" << std::endl;
+                                ImGui::PushStyleColor(ImGuiCol_Button, shades[2]);
+                                ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[2]);
+                                    if(ImGui::Button("", {20, 20})) {
+                                        std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
+                                        logBookData(readingLog);
+                                }
+                                ImGui::PopStyleColor(2);
+                                ImGui::PopID();
                             } else {
                                 // draw default empty cell if no read exists.
-                                std::cout << "read doesnt exist here" << std::endl;
+                                ImGui::PushStyleColor(ImGuiCol_Button, shades[0]);
+                                ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[0]);
+                                    if(ImGui::Button("", {20, 20})) {
+                                        std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
+                                }
+                                ImGui::PopStyleColor(2);
+                                ImGui::PopID();
                             }
-                            ImGui::PushStyleColor(ImGuiCol_Button, shades[0]);
-                            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, shades[0]);
-                                if(ImGui::Button("", {20, 20})) {
-                                    std::cout << "clicked " << i * NUMBER_OF_ROWS + j << " button" << std::endl;
-                            }
-                            ImGui::PopStyleColor(2);
-                            ImGui::PopID();
                             //boxID++;
                         }
                     }
@@ -84,7 +90,7 @@ namespace NoteHistory {
         return random_number;
     }
 
-        void fetchUserData(AppState &state) {
+    void fetchUserData(AppState &state) {
         //readingLog.clear();
         //dataFetched = true;
         std::ifstream file("/Users/klamerus/HOME/imgui_book/save_data/user_data.json");
@@ -133,6 +139,23 @@ namespace NoteHistory {
             }
         }
         return false;
+    }
+
+    void logBookData(const std::vector<BookData>& books) {
+        std::cout << "===== BookData Log (" << books.size() << " entries) =====\n";
+
+        for (size_t i = 0; i < books.size(); ++i) {
+            const BookData& b = books[i];
+            std::cout << "[" << i << "] "
+                    << "logID: " << b.logID << "\n"
+                    << "    title: " << b.title << "\n"
+                    << "    note: " << b.note << "\n"
+                    << "    pages: " << b.pageStart << " - " << b.pageEnd << "\n"
+                    << "    date: " << b.date << "\n"
+                    << "    dayOfYear: " << b.dayOfYear << "\n";
+        }
+
+        std::cout << "=============================================\n";
     }
 
 }
