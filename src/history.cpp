@@ -135,10 +135,10 @@ namespace NoteHistory {
         //std::cout << "day of year: " << readingLog[buttonNumber].dayOfYear << "\n" << std::endl;
         std::cout << "button number: " << buttonNumber << "\n" << std::endl;
         if(readingLog[buttonNumber].dayOfYear != 0 && readingLog[buttonNumber].dayOfYear == buttonNumber) {
-            //std::cout << "read here" << std::endl;
+            std::cout << "read here" << std::endl;
             return true;
         } else {
-            //std::cout << "no read here" << std::endl;
+            std::cout << "no read here" << std::endl;
             return false;
         }
         /*
